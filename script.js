@@ -299,7 +299,7 @@ if (optionSolar && optionTech && indicator) {
         setIndicatorPosition(optionTech);
         
         setTimeout(() => {
-            window.location.href = 'https://www.instagram.com/humans_are_stillll_aliveee';
+            window.location.href = 'others.html';
         }, 250);
     });
 }
