@@ -35,7 +35,6 @@ body {
     font-weight: 400;
     font-style: normal;
     font-variation-settings: "wdth" 100;
-    overflow-x: hidden;
 }
 
 
@@ -76,6 +75,82 @@ body {
     will-change: transform, opacity;
 }
 
+@keyframes fadeScaleIN {
+    0% {
+        opacity: 0%;
+        scale: 0%;
+    }
+
+    50% {
+        opacity: 0%;
+        scale: 0%;
+    }
+
+    90% {
+        opacity: 100%;
+        scale: 110%;
+    }
+
+    100% {
+        scale: 100%;
+    }
+}
+
+@keyframes fadeIN {
+    0% {
+        opacity: 0%;
+    }
+
+    50% {
+        opacity: 0%;
+    }
+
+    100% {
+        scale: 100%;
+    }
+}
+
+@keyframes navbarReveal {
+    0% {
+        width: 0vw;
+        transform: translateY(-20vh), translateX(-50%);
+    }
+
+    20% {
+        width: 0vw;
+        width: 0vw;
+        transform: translateY(0vh), translateX(-50%);
+    }
+
+    90% {
+        width: 95vw;
+    }
+
+    100% {
+        width: 90vw;
+    } 
+}
+
+@keyframes bottombarReveal {
+    0% {
+        width: 0vw;
+        transform: translateX(500%);
+    }
+
+    20% {
+        width: 0vw;
+        transform: translateX(-50%);
+    }
+
+    90% {
+        width: 85vw;
+    }
+
+    100% {
+        width: 80vw;
+    } 
+}
+
 #navbar {
     width: 90vw;
     height: 8vh;
@@ -91,6 +166,7 @@ body {
     display: flex;
     align-items: center;
     transform: translateX(-50%);
+    animation: navbarReveal 1s ease-in-out 0.2s 1 alternate forwards running;
     z-index: 100;
 }
 
@@ -106,6 +182,7 @@ body {
     align-items: center;
     justify-content: center;
     margin-left: 3%;
+    animation: fadeScaleIN 2s ease-in-out alternate forwards running;
 }
 
 #logo {
@@ -122,6 +199,7 @@ body {
     font-variation-settings:
         "wdth" 75;
     margin-left: 3%;
+    animation: fadeScaleIN 2s ease-in-out alternate forwards running;
 }
 
 /* NAVBAR ENDS HERE */
@@ -137,6 +215,7 @@ body {
     align-items: center;
     justify-content: space-between;
     transform: translateX(-50%);
+    animation: bottombarReveal 1s ease-in-out 0.2s 1 alternate forwards running;
     z-index: 101;
 }
 
@@ -170,6 +249,7 @@ body {
     cursor: pointer;
     /* Indicates clickable button */
     user-select: none;
+    animation: fadeScaleIN 2s ease-in-out alternate forwards running;
 }
 
 #toggleIndicator {
@@ -184,10 +264,10 @@ body {
     position: absolute;
     left: 3%;
     z-index: 102;
-
     /* SMOOTH SLIDE ANIMATION */
     transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     pointer-events: none;
+    
 }
 
 #bottombar a {
@@ -230,6 +310,7 @@ body {
     position: fixed;
     bottom: 0;
     left: 0;
+    animation: fadeScaleIN 1s ease-in-out alternate forwards running;
     z-index: 1;
 }
 
@@ -287,6 +368,7 @@ body {
     margin-top: 15vh;
     position: relative;
     overflow-y: auto;
+    animation: fadeIN 2s ease-in-out alternate forwards running;
     z-index: 7;
 }
 
