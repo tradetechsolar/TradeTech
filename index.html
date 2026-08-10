@@ -9,7 +9,15 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Annie+Use+Your+Telescope&family=Anton&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75,200..800&family=Caudex:ital,wght@0,400;0,700;1,400;1,700&family=DM+Serif+Display:ital@0;1&family=Dorsa&family=Faculty+Glyphic&family=Glass+Antiqua&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rammetto+One&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap&family=Stalemate&display=swap"
         rel="stylesheet">
-
+    <!-- Three.js CDN Import Map -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+      }
+    </script>
     <!-- Apple Touch Icon (iOS home screen bookmark) -->
     <link rel="apple-touch-icon" href="Trade Tech Logo.png">
 
@@ -32,7 +40,7 @@
     <!-- NAVBAR ENDS HERE -->
 
     <div id="bottombar">
-        <!-- <div id="toggleSwitch">
+        <div id="toggleSwitch">
             <div class="toggleoption solar">
                 <p>Solar</p>
             </div>
@@ -40,7 +48,7 @@
                 <p>Others</p>
             </div>
             <div id="toggleIndicator"></div>
-        </div> -->
+        </div>
 
         <a href="tel:+91 9242449052">
             <div id="contact"><img src="call-icon.png" alt="Call Us"></div>
@@ -57,10 +65,299 @@
 
     <!-- GRADIENT ENDS HERE -->
 
-    <p
-        style="font-size: 10vw; text-align: center; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-        This website is under development.</p>
+    <div id="heroContainer">
+        <!-- ------------------------------------------------- -->
+        <!-- HERO 1 STARTS HERE -->
+        <!-- ------------------------------------------------- -->
 
+        <div id="hero1">
+            <!-- Sticky Canvas Container for 3D Model -->
+            <div id="canvas-container">
+                <canvas id="three-canvas"></canvas>
+            </div>
+
+            <div id="textContainer">
+                <p>Future</p>
+                <p>of</p>
+                <p>Electricity</p>
+            </div>
+
+            <div id="benefits">
+                <div class="benefitCard">
+                    <p>Regulatory Compliance:</p>
+                    <p>Ensure compliance with all relevant regulations and standards.</p>
+                </div>
+                <div class="benefitCard">
+                    <p>Insurance:</p>
+                    <p>Insurance from theft, mob attack and wild-life damages (like monkeys).</p>
+                </div>
+                <div class="benefitCard">
+                    <p>Expertise: </p>
+                    <p>Designed and installed by brilliant technical professionals.</p>
+                </div>
+                <div class="benefitCard">
+                    <p>Flexible Financing:</p>
+                    <p>Capital-friendly solutions tailored to your budget.</p>
+                </div>
+                <div class="benefitCard">
+                    <p>Custom Engineering:</p>
+                    <p>Bespoke array layouts optimized for your roof architecture.</p>
+                </div>
+                <div class="benefitCard">
+                    <p>Enduring Warranty:</p>
+                    <p>Comprehensive, long-term performance protection.</p>
+                </div>
+                <div class="benefitCard">
+                    <p>Transparent Service:</p>
+                    <p>Honesty, clear timelines, and dependable execution.</p>
+                </div>
+                <div class="benefitCard">
+                    <p>Maximum Efficiency</p>
+                    <p>Next-gen solar technology optimized for peak energy yield.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ------------------------------------------------- -->
+        <!-- HERO 1 ENDS HERE -->
+        <!-- ------------------------------------------------- -->
+
+        <div id="hero2" class="animate-on-scroll">
+            <div id="imgContainer" class="animate-on-scroll">
+                <div></div>
+                <div style=" background-color: red;"></div>
+                <div></div>
+            </div>
+
+            <div class="buttonContainer">
+                <div class="button left"><img src="left-arrow.png" alt="Left"></div>
+                <p>Our Works</p>
+                <div class="button right"><img src="left-arrow.png" alt="Right"></div>
+            </div>
+        </div>
+
+        <!-- ------------------------------------------------- -->
+        <!-- HERO 2 ENDS HERE -->
+        <!-- ------------------------------------------------- -->
+
+        <div id="hero3" class="animate-on-scroll">
+            <div id="coalchart">
+                <div id="year">
+                    <p>2011</p>
+                    <p>2013</p>
+                    <p>2015</p>
+                    <p>2017</p>
+                    <p>2019</p>
+                    <p>2021</p>
+                    <p>2023</p>
+                </div>
+                <div class="progress-container">
+                    <div class="progress-bar" style="--val: 67.73%;">
+                        <span class="label">67.73%</span>
+                    </div>
+                    <div class="progress-bar" style="--val: 73.03%;">
+                        <span class="label">73.03%</span>
+                    </div>
+                    <div class="progress-bar" style="--val: 76.01%;">
+                        <span class="label">76.01%</span>
+                    </div>
+                    <div class="progress-bar" style="--val: 74.86%;">
+                        <span class="label">74.86%</span>
+                    </div>
+                    <div class="progress-bar" style="--val: 72.86%;">
+                        <span class="label">72.86%</span>
+                    </div>
+                    <div class="progress-bar" style="--val: 71.49%;">
+                        <span class="label">71.49%</span>
+                    </div>
+                    <div class="progress-bar" style="--val: 74.43%;">
+                        <span class="label">74.43%</span>
+                    </div>
+                </div>
+            </div>
+            <p id="hero3hading">Percentage of Electricity from Coal</p>
+        </div>
+
+        <!-- ------------------------------------------------- -->
+        <!-- HERO 3 ENDS HERE -->
+        <!-- ------------------------------------------------- -->
+
+        <div id="hero4">
+
+            <div id="factory">
+
+                <div id="factoryText1">
+                    <p class="animate-on-scroll">Save</p>
+                    <p class="animate-on-scroll">Our</p>
+                    <p class="animate-on-scroll" style="font-size: 60vw;">Earth</p>
+                </div>
+
+                <div id="factoryImage" class="animate-on-scroll"></div>
+
+                <div id="factoryText2">
+                    <p class="animate-on-scroll">Save</p>
+                    <p class="animate-on-scroll">Our</p>
+                    <p class="animate-on-scroll" style="font-size: 60vw;">Earth</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ------------------------------------------------- -->
+        <!-- HERO 4 ENDS HERE -->
+        <!-- ------------------------------------------------- -->
+
+        <div id="hero5">
+
+            <div id="hero5titleContainer">
+                <div class="hero5title">
+                    <p class="marquee-content">Eliminate High Electricity Bills in Few Steps</p>
+                </div>
+                <div class="hero5title">
+                    <p class="marquee-content">Eliminate High Electricity Bills in Few Steps</p>
+                </div>
+            </div>
+
+            <div class="carousel-wrapper">
+                <div class="carousel">
+                    <!-- 5 Square (1:1) Images -->
+                    <div class="slide"><img src="https://i.ibb.co/7xwdmHy6/Consult.png" alt="Slide 1"></div>
+                    <div class="slide"><img src="https://i.ibb.co/WNT67ZCw/Survey.png" alt="Slide 2"></div>
+                    <div class="slide"><img src="https://i.ibb.co/B5NTgdxv/Installation.png" alt="Slide 3"></div>
+                    <div class="slide"><img src="https://i.ibb.co/JwLpQ9H0/Inspection.png" alt="Slide 4"></div>
+                    <div class="slide"><img src="https://i.ibb.co/N2nPM5Wp/Enjoy.png" alt="Slide 5"></div>
+                </div>
+
+                <!-- Glassmorphic Controls -->
+                <div class="controls">
+                    <button class="glass-btn" id="prevBtn" aria-label="Previous">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m15 18-6-6 6-6" />
+                        </svg>
+                    </button>
+                    <button class="glass-btn" id="nextBtn" aria-label="Next">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m9 18 6-6-6-6" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ------------------------------------------------- -->
+        <!-- HERO 5 ENDS HERE -->
+        <!-- ------------------------------------------------- -->
+        <div id="hero6">
+            <div class="glass-solar-widget">
+  <!-- Header & WBSEDCL Download Action -->
+  <header class="widget-header">
+    <a href="https://www.wbsedcl.in" target="_blank" rel="noopener noreferrer" class="glass-btn wbsedcl-link" id="wbsedclBtn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Download WBSEDCL Bill
+    </a>
+  </header>
+
+  <!-- Instructions -->
+  <section class="widget-section">
+    <p class="widget-instruction">
+      Please enter the electricity consumption for all 4 quarterly bills. Refer to <strong>"Total Unit"</strong> on offline bills or <strong>"Unit Consumed"</strong> on online e-bills.
+    </p>
+  </section>
+
+  <!-- Form & 2x2 Input Grid -->
+  <form id="solarForm" onsubmit="return false;">
+    <div class="input-grid">
+      <div class="input-group">
+        <label for="bill1">Bill 1 (Q1) [kWh]</label>
+        <input type="number" id="bill1" min="0" step="any" placeholder="e.g. 350" required>
+      </div>
+
+      <div class="input-group">
+        <label for="bill2">Bill 2 (Q2) [kWh]</label>
+        <input type="number" id="bill2" min="0" step="any" placeholder="e.g. 420" required>
+      </div>
+
+      <div class="input-group">
+        <label for="bill3">Bill 3 (Q3) [kWh]</label>
+        <input type="number" id="bill3" min="0" step="any" placeholder="e.g. 480" required>
+      </div>
+
+      <div class="input-group">
+        <label for="bill4">Bill 4 (Q4) [kWh]</label>
+        <input type="number" id="bill4" min="0" step="any" placeholder="e.g. 310" required>
+      </div>
+    </div>
+
+    <button type="submit" class="glass-btn submit-btn" id="calcBtn">
+      Calculate Solar Requirement
+    </button>
+  </form>
+
+  <!-- Output Display -->
+  <section class="widget-section output-section">
+    <label class="output-label" for="outputValue">You may need a solar system of:</label>
+    <div class="output-field" id="outputValue">0.00 kW</div>
+  </section>
+
+  <hr class="glass-divider">
+
+  <!-- South Alignment Compass -->
+  <section class="widget-section compass-section">
+    <h3 class="section-title">Solar Panel Alignment</h3>
+    
+    <div class="compass-wrapper" id="compassWrapper">
+      <div class="compass-dial" id="compassDial">
+        <!-- Subtracted Triangle Dart Arrow -->
+        <div class="south-pointer" id="southPointer">
+          <svg viewBox="0 0 24 24" class="arrow-icon">
+            <path d="M12 2 L21 21 L12 16 L3 21 Z" 
+                  fill="#f43f5e" 
+                  stroke="#ffffff" 
+                  stroke-width="1.5" 
+                  stroke-linejoin="round" 
+                  stroke-linecap="round"/>
+          </svg>
+          <span class="south-tag">SOUTH</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="compass-instruction">
+      The slope of the system should be facing in this direction.
+    </p>
+
+    <!-- Diagnostics & Controls -->
+    <div class="compass-controls">
+      <button class="glass-btn compass-btn" id="compassPermBtn">
+        Start / Calibrate Compass
+      </button>
+      <div class="heading-readout" id="headingReadout">Heading: --°</div>
+      <div class="sensor-status" id="sensorStatus">Detecting compass sensor...</div>
+    </div>
+  </section>
+</div>
+        </div>
+
+
+
+
+
+
+    </div>
+
+
+    <!-- Add page spacer below heroContainer to enable page scrolling -->
+    <div id="pageSpacer" style="height: 120vh;"></div>
+
+
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>

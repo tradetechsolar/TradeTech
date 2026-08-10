@@ -289,7 +289,7 @@ if (optionSolar && optionTech && indicator) {
         setIndicatorPosition(optionSolar);
         
         setTimeout(() => {
-            window.location.href = 'index2.html';
+            window.location.href = 'index.html';
         }, 250);
     });
 
@@ -311,14 +311,257 @@ document.querySelectorAll('#bottombar a').forEach(link => {
     });
 });
 
-// HERO 3 STARTS HERE
+// ----------------
+// Steps carrossel starts here
+// ----------------
 
-const maskButton = document.getElementById('mask-button');
-const objectElement = document.querySelector('.object');
+const slides = Array.from(document.querySelectorAll('.slide'));
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const carousel = document.querySelector('.carousel');
 
-maskButton.addEventListener('click', () => {
-  maskButton.classList.add('hidden');       /* Hides the button */
-  objectElement.classList.remove('hidden'); /* Shows .object */
+let currentIndex = 0;
+const totalSlides = slides.length;
+
+/* Optional: Fallback definition in case triggerBubbleVibration is not defined in your script yet */
+if (typeof window.triggerBubbleVibration !== 'function') {
+  window.triggerBubbleVibration = function () {
+    if ('vibrate' in navigator) {
+      navigator.vibrate([15, 30, 15]); // Soft bubble/haptic vibration pulse
+    }
+  };
+}
+
+function updateCarousel() {
+  slides.forEach((slide, i) => {
+    slide.className = 'slide'; // Reset base state
+
+    // Calculate circular distance from current index
+    const distance = (i - currentIndex + totalSlides) % totalSlides;
+
+    if (distance === 0) {
+      slide.classList.add('active');
+    } else if (distance === 1) {
+      slide.classList.add('next');
+    } else if (distance === totalSlides - 1) {
+      slide.classList.add('prev');
+    } else if (distance === 2) {
+      slide.classList.add('far-next');
+    } else {
+      slide.classList.add('far-prev');
+    }
+  });
+}
+
+function showNext() {
+  currentIndex = (currentIndex + 1) % totalSlides;
+  updateCarousel();
+}
+
+function showPrev() {
+  currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+  updateCarousel();
+}
+
+// Button Events with Vibration Trigger
+nextBtn.addEventListener('click', () => {
   triggerBubbleVibration();
-  setIndicatorPosition(optionTech);
+  showNext();
 });
+
+prevBtn.addEventListener('click', () => {
+  triggerBubbleVibration();
+  showPrev();
+});
+
+// Click directly on side cards to focus
+slides.forEach((slide, i) => {
+  slide.addEventListener('click', () => {
+    if (currentIndex !== i) {
+      triggerBubbleVibration();
+      currentIndex = i;
+      updateCarousel();
+    }
+  });
+});
+
+// Swipe / Drag Gestures
+let startX = 0;
+let isDragging = false;
+
+carousel.addEventListener('pointerdown', (e) => {
+  isDragging = true;
+  startX = e.clientX;
+});
+
+carousel.addEventListener('pointerup', (e) => {
+  if (!isDragging) return;
+  isDragging = false;
+  const diffX = e.clientX - startX;
+
+  // Swipe threshold detection
+  if (diffX < -40) {
+    triggerBubbleVibration();
+    showNext();
+  } else if (diffX > 40) {
+    triggerBubbleVibration();
+    showPrev();
+  }
+});
+
+carousel.addEventListener('pointerleave', () => {
+  isDragging = false;
+});
+
+// Initialize position
+updateCarousel();
+
+// ==========================================
+// HERO 5 ENDS HERE
+// ==========================================
+
+/* Haptic Bubble Vibration Function */
+if (typeof window.triggerBubbleVibration !== 'function') {
+  window.triggerBubbleVibration = function () {
+    if ('vibrate' in navigator) {
+      navigator.vibrate([15, 30, 15]);
+    }
+  };
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const wbsedclBtn = document.getElementById('wbsedclBtn');
+  const solarForm = document.getElementById('solarForm');
+  const outputValue = document.getElementById('outputValue');
+  
+  const compassDial = document.getElementById('compassDial');
+  const southPointer = document.getElementById('southPointer');
+  const compassPermBtn = document.getElementById('compassPermBtn');
+  const headingReadout = document.getElementById('headingReadout');
+  const sensorStatus = document.getElementById('sensorStatus');
+
+  let currentHeading = 0;
+  let wasInSouthZone = false;
+
+  // 1. WBSEDCL Download Button
+  wbsedclBtn.addEventListener('click', () => {
+    triggerBubbleVibration();
+  });
+
+  // 2. Solar Formula Calculation
+  solarForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    triggerBubbleVibration();
+
+    const b1 = parseFloat(document.getElementById('bill1').value) || 0;
+    const b2 = parseFloat(document.getElementById('bill2').value) || 0;
+    const b3 = parseFloat(document.getElementById('bill3').value) || 0;
+    const b4 = parseFloat(document.getElementById('bill4').value) || 0;
+
+    const totalUnits = b1 + b2 + b3 + b4;
+
+    // Formula: Required System = {(Bill1 + Bill2 + Bill3 + Bill4) / 365} / 3.75
+    const requiredSystem = (totalUnits / 365) / 3.75;
+
+    outputValue.textContent = `${requiredSystem.toFixed(2)} kW`;
+  });
+
+  // 3. Compass Orientation & South Pointer Logic
+  function updateHeading(heading) {
+    currentHeading = Math.round((heading + 360) % 360);
+    headingReadout.textContent = `Heading: ${currentHeading}°`;
+
+    /* 
+       True South is at 180° compass heading.
+       Arrow Angle = (180 - heading)
+       When facing South (heading = 180°), Arrow Angle = 0° (Points straight UP).
+    */
+    const arrowAngle = 180 - currentHeading;
+    compassDial.style.transform = `rotate(${arrowAngle}deg)`;
+
+    // Detect South Alignment (180° ± 10° Tolerance)
+    const isFacingSouth = Math.abs(currentHeading - 180) <= 10;
+
+    if (isFacingSouth) {
+      southPointer.classList.add('aligned');
+      if (!wasInSouthZone) {
+        triggerBubbleVibration();
+        wasInSouthZone = true;
+      }
+    } else {
+      southPointer.classList.remove('aligned');
+      wasInSouthZone = false;
+    }
+  }
+
+  // Handle Hardware Sensor Events
+  function handleDeviceOrientation(e) {
+    let heading = null;
+
+    if (e.webkitCompassHeading !== undefined) {
+      // iOS Compass Heading (True North)
+      heading = e.webkitCompassHeading;
+    } else if (e.alpha !== null) {
+      // Android Gyroscope Heading
+      heading = e.absolute ? (360 - e.alpha) : (360 - e.alpha);
+    }
+
+    if (heading !== null && !isNaN(heading)) {
+      sensorStatus.textContent = '✅ Live Compass Active';
+      sensorStatus.style.color = '#34d399';
+      updateHeading(heading);
+    }
+  }
+
+  // Initialize Sensors with Permission Verification
+  function startCompass() {
+    triggerBubbleVibration();
+
+    const isSecure = window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    
+    if (!isSecure) {
+      sensorStatus.textContent = '⚠️ Compass blocked: Web browsers require HTTPS to read hardware orientation sensors.';
+      sensorStatus.style.color = '#fbbf24';
+      return;
+    }
+
+    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+      // iOS Permission Workflow
+      DeviceOrientationEvent.requestPermission()
+        .then((permissionState) => {
+          if (permissionState === 'granted') {
+            window.addEventListener('deviceorientation', handleDeviceOrientation, true);
+          } else {
+            sensorStatus.textContent = '❌ Sensor permission denied by iOS.';
+          }
+        })
+        .catch(console.error);
+    } else if ('ondeviceorientationabsolute' in window) {
+      // Android Absolute Heading
+      window.addEventListener('deviceorientationabsolute', handleDeviceOrientation, true);
+    } else if ('DeviceOrientationEvent' in window) {
+      // Standard Fallback
+      window.addEventListener('deviceorientation', handleDeviceOrientation, true);
+    } else {
+      sensorStatus.textContent = '⚠️ Magnetometer sensor not available on this device.';
+    }
+  }
+
+  compassPermBtn.addEventListener('click', startCompass);
+
+  // Initial State Setup
+  updateHeading(0);
+});
+
+// -------------------------------------------------------
+
+// -------------------------------------------------------
+// const maskButton = document.getElementById('mask-button');
+// const objectElement = document.querySelector('.object');
+
+// maskButton.addEventListener('click', () => {
+//   maskButton.classList.add('hidden');       /* Hides the button */
+//   objectElement.classList.remove('hidden'); /* Shows .object */
+//   triggerBubbleVibration();
+//   setIndicatorPosition(optionTech);
+// });
