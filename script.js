@@ -8,6 +8,22 @@ function triggerBubbleVibration() {
     }
 }
 
+//Bottom bar action button switching function
+
+const actionBtn = document.getElementById('action-btn');
+const emailAddress = 'support.tradetech@gmail.com';
+
+actionBtn.addEventListener('click', (e) => {
+  // Check if screen width is desktop-sized (1024px or wider)
+  const isDesktop = window.innerWidth >= 1024;
+
+  if (isDesktop) {
+    e.preventDefault(); // Stop the default tel: link from opening
+    window.location.href = `mailto:${emailAddress}`;
+  }
+  // On mobile (< 1024px), e.preventDefault() is skipped and tel: opens naturally
+});
+
 // ==========================================
 // 1. HERO 1: TEXT SETUP & SCROLL ANIMATIONS
 // ==========================================
